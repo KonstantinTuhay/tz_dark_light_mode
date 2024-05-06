@@ -1,24 +1,27 @@
-import React, { useState } from "react";
+import React, { createContext, useState } from "react";
+import MyComponent from "./MyComponent";
 import "./App.css";
 
-const App = () => {
-  const [theme, setTheme] = useState("light");
-  const switchTheme = () => {
-    setTheme((prev) => (prev === "light" ? "dark" : "light"));
-  };
-  return (
-    <div className="wrapper" id={theme}>
-      <div className="toggle-container">
-        <p
-          style={{ color: theme === "light" ? "black" : "white" }}
-          className="change-text"
-        >
-          {theme} mode
-        </p>
-        <input onChange={switchTheme} type="checkbox" id="toggle-btn" />
-      </div>
-    </div>
-  );
-};
+const ThemeContext = createContext(null);
 
-export default App;
+export default function App() {
+  const [theme, setTheme] = useState("light");
+
+  return (
+    <ThemeContext.Provider value={theme}>
+      <div className="wrapper" id={theme}>
+        <label>
+          <MyComponent ThemeContext={ThemeContext} />
+          <input
+            type="checkbox"
+            checked={theme === "dark"}
+            onChange={(e) => {
+              setTheme(e.target.checked ? "dark" : "light");
+            }}
+          />
+          Use {theme === "light" ? "dark" : "light"} mode
+        </label>
+      </div>
+    </ThemeContext.Provider>
+  );
+}

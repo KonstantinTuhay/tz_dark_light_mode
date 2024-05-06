@@ -1,6 +1,5 @@
 body {
   margin: 0;
-  overflow: hidden;
   background-color: white;
 }
 
@@ -10,14 +9,9 @@ body {
 
 #dark {
   background-color: black;
+  color: white;
 }
 
 #light {
   background-color: #fff;
-}
-
-.toggle-container {
-  position: absolute;
-  top: 50%;
-  left: 50%;
 }
