@@ -1,8 +1,7 @@
-import React, { createContext, useState } from "react";
+import React, { useState } from "react";
 import MyComponent from "./MyComponent";
+import ThemeContext from "./ThemeContext";
 import "./App.css";
-
-const ThemeContext = createContext(null);
 
 export default function App() {
   const [theme, setTheme] = useState("light");
@@ -11,7 +10,7 @@ export default function App() {
     <ThemeContext.Provider value={theme}>
       <div className="wrapper" id={theme}>
         <label>
-          <MyComponent ThemeContext={ThemeContext} />
+          <MyComponent />
           <input
             type="checkbox"
             checked={theme === "dark"}
